@@ -6,11 +6,11 @@ package com.kredx.bean;
 public class ReviewScorePair {
 
     private Review review;
-    private Double score;
+    private Double tokenMatchingScore;
 
-    public ReviewScorePair(Review review, Double score) {
+    public ReviewScorePair(Review review, Double tokenMatchingScore) {
         this.review = review;
-        this.score = score;
+        this.tokenMatchingScore = tokenMatchingScore;
     }
 
 
@@ -22,11 +22,11 @@ public class ReviewScorePair {
         this.review = review;
     }
 
-    public Double getScore() {
-        return score;
+    public Double getTokenMatchingScore() {
+        return tokenMatchingScore;
     }
 
-    public void setScore(Double score) {
-        this.score = score;
+    public void setTokenMatchingScore(Double tokenMatchingScore) {
+        this.tokenMatchingScore = tokenMatchingScore;
     }
 }

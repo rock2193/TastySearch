@@ -12,6 +12,8 @@
 
 #Intellij Files
 *.iml
+.idea
+
 
 #target folder
 taget/*

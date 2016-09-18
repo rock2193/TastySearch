@@ -32,14 +32,14 @@ public class RequestHandler {
         return new PriorityQueue<ReviewScorePair>(size, new Comparator<ReviewScorePair>() {
             @Override
             public int compare(ReviewScorePair o1, ReviewScorePair o2) {
-                if (o1.getScore().equals(o2.getScore())){
+                if (o1.getTokenMatchingScore().equals(o2.getTokenMatchingScore())){
                     switch (strategy){
                         case MostRecent:    return o1.getReview().getTime().compareTo(o2.getReview().getTime());
                         case HighScore:     return o1.getReview().getScore().compareTo(o2.getReview().getScore());
                         case LowScore:      return -o1.getReview().getScore().compareTo(o2.getReview().getScore());
                     }
                 }
-                return o1.getScore().compareTo(o2.getScore());
+                return o1.getTokenMatchingScore().compareTo(o2.getTokenMatchingScore());
             }
         });
     }
@@ -103,7 +103,7 @@ public class RequestHandler {
         List<ReviewScorePair> result = new ArrayList<ReviewScorePair>();
         while (topReviews.size() > 0){
             ReviewScorePair polledData = topReviews.poll();
-            polledData.setScore(polledData.getScore() / (double) size);
+            polledData.setTokenMatchingScore(polledData.getTokenMatchingScore() / (double) size);
             result.add(polledData);
         }
         Collections.reverse(result);
