@@ -58,9 +58,12 @@ public class ServiceEndPoint extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         try {
+            long start = System.currentTimeMillis();
             getParamsFromRequest(request);
             OutputBean result = RequestHandler.getInstance().getTopReviews(query, k, strategy);
+            logger.info("Processing time : " + (System.currentTimeMillis() - start) + "ms");
             out.write(new Gson().toJson(result));
+            logger.info("Total time , including data writing time : " + (System.currentTimeMillis()- start));
         }catch (Exception e){
             logger.error(e.getMessage() , e);
             out.write("Error !! " + e.getMessage());

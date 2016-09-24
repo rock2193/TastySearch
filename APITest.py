@@ -13,12 +13,12 @@ def loadQuries():
     return quries;
 
 def doHttpRequest(query):
-    urllib2.urlopen("http://ec2-52-39-180-192.us-west-2.compute.amazonaws.com:8080/TastySearch/search?k=1&q=" + urllib.quote_plus(query)).read()
+    urllib2.urlopen("http://ec2-52-39-180-192.us-west-2.compute.amazonaws.com:8080/TastySearch/search?k=20&q=" + urllib.quote_plus(query)).read()
 
 queries = loadQuries()    
-pool = Pool(10)
+pool = Pool(100)
 print("Start : " + str(time.time()))
-for items in tqdm(pool.imap(doHttpRequest, queries), ascii=True, total=len(queries)):
+for items in tqdm(pool.imap_unordered(doHttpRequest, queries), ascii=True, total=len(queries)):
     i = 1
 print("End : " + str(time.time()))
 
